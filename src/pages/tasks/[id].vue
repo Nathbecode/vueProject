@@ -2,8 +2,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
-    <h1>Home</h1>
-    <RouterLink :to="{ name: '/projects/' }">Go to projects</RouterLink>
-  </div>
+  <h1>task</h1>
 </template>
