@@ -4,6 +4,9 @@ import autoprefixer from 'autoprefixer'
 import tailwind from 'tailwindcss'
 import AutoImport from 'unplugin-auto-import/vite'
 
+import { VueRouterAutoImports } from 'unplugin-vue-router'
+import Components from 'unplugin-vue-components/vite'
+
 import { defineConfig } from 'vite'
 
 import vue from '@vitejs/plugin-vue'
@@ -19,9 +22,17 @@ export default defineConfig({
         /\.vue\?vue/, // .vue
         /\.md$/, // .md
       ],
-      imports: ['vue', 'vue-router'],
+      imports: [
+        'vue',
+        VueRouterAutoImports,
+        {
+          pinia: ['defineStore', 'storeToRefs', 'acceptHMRupdate'],
+        },
+      ],
+
       dts: true,
       viteOptimizeDeps: true,
+      dirs: ['src/stores'],
     }),
     VueRouter(),
     vue({
@@ -30,6 +41,9 @@ export default defineConfig({
           isCustomElement: element => element.startsWith('iconify-icon'),
         },
       },
+    }),
+    Components({
+      /* options */
     }),
   ], // Call VueRouter as a function
   css: {
