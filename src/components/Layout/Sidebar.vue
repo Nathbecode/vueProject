@@ -42,7 +42,7 @@ const executeAction = async (linkTitle: string) => {
     const { logout } = await import('@/utils/supaAuth')
     const isLoggedOut = await logout()
 
-    if (isLoggedOut) router.push('/login')
+    if (isLoggedOut) router.push({ name: '/login' })
   }
 }
 </script>
